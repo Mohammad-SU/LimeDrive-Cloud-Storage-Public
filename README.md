@@ -6,6 +6,13 @@ A robust cloud storage/file hosting service that I solo-developed for over a yea
 ## Important Note
 The LimeDrive codebase is mostly closed-source, with only a fraction of its code available in this public repo. The code here is primarily meant for showcase and may not function properly if you attempt to run it in your local environment with no other dependencies. With that said, feel free to use what's here as inspiration.
 
+## Tech Stack
+**Frontend** &nbsp;–&nbsp; React &nbsp;•&nbsp; TypeScript &nbsp;•&nbsp; HTML &nbsp;•&nbsp; CSS/Sass &nbsp;•&nbsp; Vite  &nbsp;•&nbsp; React Router &nbsp;•&nbsp; Cloudflare Pages
+
+**Backend** &nbsp;–&nbsp; Laravel &nbsp;•&nbsp; PHP &nbsp;•&nbsp; SQL (PostgreSQL) &nbsp;•&nbsp; Docker &nbsp;•&nbsp; Cloudflare Workers &nbsp;•&nbsp; Render
+
+**Other** &nbsp;–&nbsp; Playwright  &nbsp;•&nbsp; Axios &nbsp;•&nbsp; REST API &nbsp;•&nbsp; Cloudflare R2 (object storage) &nbsp;•&nbsp; Neon (DB host)
+
 ## Current Features
 **Cost and Performance Optimisation** &nbsp;–&nbsp; Integrates zero-egress-fee object storage, presigned URLs, no-cost cloud service tiers, CDN, caching, lazy loading, data deduplication, automated cleanup, throttling, and usage limits - these lead to ***zero costs*** in data storage/processing, ***+63.3% faster*** API in production, being ***+2.7x faster*** than DropBox in service speed, and improved scalability and UX.
 
