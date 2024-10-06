@@ -36,4 +36,4 @@ The LimeDrive codebase is mostly closed-source, with only a fraction of its code
 
 **Concurrency Control** &nbsp;–&nbsp; DB constraints, transactions, mutexes, and graceful exception handling allows for robust concurrent operations to avoid race conditions.
 
-**CI/CD Pipelines** &nbsp;–&nbsp; Separated development and production environments, with varied configurations on Render, Cloudflare, Docker, Github Actions, and locally - reducing chance of downtime.
+**CI/CD Pipelines** &nbsp;–&nbsp; Separated development and production environments, with configurations on Render, Cloudflare, Docker, Github Actions, and Doppler - reducing the chance of downtime.
