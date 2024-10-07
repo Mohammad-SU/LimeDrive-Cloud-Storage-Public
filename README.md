@@ -21,7 +21,7 @@ The LimeDrive codebase is mostly closed-source, with only a fraction of its code
 > 
 > If you're an employer, you can request to see more of the code during an interview.
 
-## Screenshots
+## Screenshots With Captions
 <details>
 <summary>
 Click to expand
