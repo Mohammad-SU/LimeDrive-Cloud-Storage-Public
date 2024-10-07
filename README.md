@@ -22,8 +22,8 @@ Click to expand
 ### File Viewer (Video and Controls)
 ![File Viewer (Video and Controls)](screenshots/file-viewer-video.png)
 
-### File List (Detailed UI)
-![File List (Detailed UI)](screenshots/file-list-detailed-UI.png)
+### File List (Detailed UI With Item Selection, Drag and Drop, and Upload Queue)
+![File List (Detailed UI With Item Selection, Drag and Drop, and Upload Queue](screenshots/file-list-detailed-UI.png)
 
 ### File Viewer (PDF and Shareable Link Generation)
 ![File Viewer (PDF and Shareable Link Generation)](screenshots/file-viewer-pdf-share-modal.png)
