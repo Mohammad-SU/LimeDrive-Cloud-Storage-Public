@@ -3,12 +3,18 @@
 ## What's LimeDrive?
 A robust cloud storage/file hosting service that I solo-developed for over a year, with some areas surpassing Dropbox/Google Drive. Seamlessly manage and view files in LimeDrive's sleek retro UI - secure, fast, and performant.
 
-## Important Note
+> [!NOTE]
 The LimeDrive codebase is mostly closed-source, with only a fraction of its code available in this public repo. The code here is primarily meant for showcase and may not function properly if you attempt to run it in your local environment with no other dependencies. With that said, feel free to use what's here as inspiration.
+> 
+> If you're an employer, you can request to see more of the code during an interview.
 
 ## Screenshots
 <details>
-<summary>Click to expand</summary>
+<summary>
+Click to expand
+
+> UI borders may seem low quality in the screenshots. You can zoom in for better details.
+</summary>
   
 ### File List (Clean UI)
 ![File List (Clean UI)](screenshots/file-list-clean-UI.png)
@@ -31,7 +37,7 @@ The LimeDrive codebase is mostly closed-source, with only a fraction of its code
 </details>
 
 ## Tech Stack
-**Frontend** &nbsp;–&nbsp; React &nbsp;•&nbsp; TypeScript &nbsp;•&nbsp; HTML &nbsp;•&nbsp; CSS/Sass &nbsp;•&nbsp; Vite  &nbsp;•&nbsp; React Router &nbsp;•&nbsp; Cloudflare Pages
+**Frontend** &nbsp;–&nbsp; React &nbsp;• TypeScript &nbsp;•&nbsp; HTML &nbsp;•&nbsp; CSS/Sass &nbsp;•&nbsp; Vite  &nbsp;•&nbsp; React Router &nbsp;•&nbsp; Cloudflare Pages
 
 **Backend** &nbsp;–&nbsp; Laravel &nbsp;•&nbsp; PHP &nbsp;•&nbsp; SQL (PostgreSQL) &nbsp;•&nbsp; Docker &nbsp;•&nbsp; Cloudflare Workers &nbsp;•&nbsp; Render
 
