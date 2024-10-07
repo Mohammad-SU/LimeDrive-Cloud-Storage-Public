@@ -1,6 +1,6 @@
 ## 🧪 Test the Program: [LimeDrive.net](https://limedrive.net)
 
-(add here limedrive screenshots gif)
+(add here limedrive gif)
 
 <p align="center">
   <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react" alt="React Badge">
