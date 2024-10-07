@@ -3,17 +3,19 @@
 (add here limedrive screenshots gif)
 
 <p align="center">
-<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react" alt="React Badge">
-<img src="https://img.shields.io/badge/typescript-%2320232a.svg?style=for-the-badge&logo=typescript" alt="Typescript Badge">
-<img src="https://img.shields.io/badge/sass-%2320232a.svg?style=for-the-badge&logo=sass" alt="Laravel Badge">
+  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react" alt="React Badge">
+  <img src="https://img.shields.io/badge/typescript-%2320232a.svg?style=for-the-badge&logo=typescript" alt="Typescript Badge">
+  <img src="https://img.shields.io/badge/sass-%2320232a.svg?style=for-the-badge&logo=sass" alt="Laravel Badge">
 </p>
+
 <p align="center">
-<img src="https://img.shields.io/badge/laravel-%2320232a.svg?style=for-the-badge&logo=laravel" alt="Laravel Badge">
-<img src="https://img.shields.io/badge/postgresql-%2320232a.svg?style=for-the-badge&logo=postgresql" alt="Laravel Badge">
-<img src="https://img.shields.io/badge/cloudflare-%2320232a.svg?style=for-the-badge&logo=cloudflare" alt="Laravel Badge">
+  <img src="https://img.shields.io/badge/laravel-%2320232a.svg?style=for-the-badge&logo=laravel" alt="Laravel Badge">
+  <img src="https://img.shields.io/badge/postgresql-%2320232a.svg?style=for-the-badge&logo=postgresql" alt="Laravel Badge">
+  <img src="https://img.shields.io/badge/cloudflare-%2320232a.svg?style=for-the-badge&logo=cloudflare" alt="Laravel Badge">
 </p>
 
 ## ☁️ What's LimeDrive?
+
 A robust cloud storage/file hosting service that I solo-developed for over a year, with some areas surpassing Dropbox/Google Drive (particularly speed). Seamlessly manage and view files in LimeDrive's sleek retro UI - secure, fast, and performant.
 
 > [!NOTE]
@@ -22,7 +24,9 @@ The LimeDrive codebase is mostly closed-source, with only a fraction of its code
 > If you're an employer, you can request to see more of the code during an interview.
 
 ## 📸 Screenshots With Captions
+
 <details>
+  
 <summary>
 Click to expand
 
@@ -50,6 +54,7 @@ Click to expand
 </details>
 
 ## 🛠️ Tech Stack
+
 **Frontend** &nbsp;–&nbsp; React &nbsp;•&nbsp; TypeScript &nbsp;•&nbsp; HTML &nbsp;•&nbsp; CSS/Sass &nbsp;•&nbsp; Vite  &nbsp;•&nbsp; React Router &nbsp;•&nbsp; Cloudflare Pages
 
 **Backend** &nbsp;–&nbsp; Laravel &nbsp;•&nbsp; PHP &nbsp;•&nbsp; SQL (PostgreSQL) &nbsp;•&nbsp; Docker &nbsp;•&nbsp; Cloudflare Workers &nbsp;•&nbsp; Render
@@ -57,14 +62,15 @@ Click to expand
 **Other** &nbsp;–&nbsp; Playwright  &nbsp;•&nbsp; Axios &nbsp;•&nbsp; REST API &nbsp;•&nbsp; Cloudflare R2 (object storage) &nbsp;•&nbsp; Neon (DB host)
 
 ## 🔍 Current Features
+
 ⚡ **Cost and Performance Optimisation**
 >Integrates zero-egress-fee object storage, presigned URLs, no-cost cloud service tiers, CDN, caching, lazy loading, data deduplication, automated cleanup, throttling, and usage limits - these lead to ***zero costs*** in data storage/processing, ***+63.3% faster*** API in production, being ***+2.7x faster*** than DropBox in service speed, and improved scalability and UX.
 
 🔒 **Security** 
->Client/server validation, encryption, hashing, proxy, WAF, SSL, CORS, CSRF tokens.
+>Client/server validation, encryption, hashing, proxy, WAF, SSL, CORS, and CSRF tokens.
 
 🧪 **Automated Tests** 
->E2E tests (Playwright), Unit tests (PHPUnit), CI/CD (GitHub Actions).
+>E2E tests (Playwright), Unit tests (PHPUnit), and CI/CD (GitHub Actions).
 
 🔑 **User Accounts** 
 >Registration, login, account settings, sessions, and email verification/notifications.
@@ -76,7 +82,7 @@ Click to expand
 >Convenient viewer in-browser, supporting videos, images, PDFs, audio, and plain text. Includes shared views, printing, and custom video controls with fullscreen and keyboard shortcuts.
 
 🔗 **Sharing** 
->Generate secure links to share files, providing effortless access/collaboration for recipients. Includes permission management. Cloudflare worker verifies URLs via server-generated HMAC and IP.
+>Generate secure links to share files, providing effortless access/collaboration for recipients. Includes permission management. A Cloudflare worker verifies URLs via server-generated HMAC and IP.
 
 ♿ **Accessibility** 
 >ARIA, keyboard navigation, shortcuts, clear labels, and semantic HTML.
