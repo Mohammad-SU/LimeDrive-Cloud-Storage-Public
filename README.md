@@ -57,23 +57,23 @@ Click to expand
 **Other** &nbsp;–&nbsp; Playwright  &nbsp;•&nbsp; Axios &nbsp;•&nbsp; REST API &nbsp;•&nbsp; Cloudflare R2 (object storage) &nbsp;•&nbsp; Neon (DB host)
 
 ## Current Features
-**Cost and Performance Optimisation** &nbsp;–&nbsp; Integrates zero-egress-fee object storage, presigned URLs, no-cost cloud service tiers, CDN, caching, lazy loading, data deduplication, automated cleanup, throttling, and usage limits - these lead to ***zero costs*** in data storage/processing, ***+63.3% faster*** API in production, being ***+2.7x faster*** than DropBox in service speed, and improved scalability and UX.
+🚀 **Cost and Performance Optimisation** &nbsp;–&nbsp; Integrates zero-egress-fee object storage, presigned URLs, no-cost cloud service tiers, CDN, caching, lazy loading, data deduplication, automated cleanup, throttling, and usage limits - these lead to ***zero costs*** in data storage/processing, ***+63.3% faster*** API in production, being ***+2.7x faster*** than DropBox in service speed, and improved scalability and UX.
 
-**Security** &nbsp;–&nbsp; Client/server validation, encryption, hashing, proxy, WAF, SSL, CORS, CSRF tokens.
+🔒 **Security** &nbsp;–&nbsp; Client/server validation, encryption, hashing, proxy, WAF, SSL, CORS, CSRF tokens.
 
-**Automated Tests** &nbsp;–&nbsp; E2E tests (Playwright), Unit tests (PHPUnit), CI/CD (GitHub Actions).
+🧪 **Automated Tests** &nbsp;–&nbsp; E2E tests (Playwright), Unit tests (PHPUnit), CI/CD (GitHub Actions).
 
-**User Accounts** &nbsp;–&nbsp; Registration, login, account settings, sessions, and email verification/notifications.
+👤 **User Accounts** &nbsp;–&nbsp; Registration, login, account settings, sessions, and email verification/notifications.
 
-**File Storage and Management** &nbsp;–&nbsp; Folders, paths, drag & drop, downloading, link-share, and upload queue with robust management of varied situations like network errors, name conflicts, and cancelling.
+📁 **File Storage and Management** &nbsp;–&nbsp; Folders, paths, drag & drop, downloading, link-share, and upload queue with robust management of varied situations like network errors, name conflicts, and cancelling.
 
-**File Viewer** &nbsp;–&nbsp; Convenient viewer in-browser, supporting videos, images, PDFs, audio, and plain text. Includes shared views, printing, and custom video controls with fullscreen and keyboard shortcuts.
+👁️ **File Viewer** &nbsp;–&nbsp; Convenient viewer in-browser, supporting videos, images, PDFs, audio, and plain text. Includes shared views, printing, and custom video controls with fullscreen and keyboard shortcuts.
 
-**Sharing** &nbsp;–&nbsp; Generate secure links to share files, providing effortless access/collaboration for recipients. Includes permission management. Cloudflare worker verifies URLs via server-generated HMAC and IP.
+🔗 **Sharing** &nbsp;–&nbsp; Generate secure links to share files, providing effortless access/collaboration for recipients. Includes permission management. Cloudflare worker verifies URLs via server-generated HMAC and IP.
 
-**Accessibility** &nbsp;–&nbsp; ARIA, keyboard navigation, shortcuts, clear labels, and semantic HTML.
+♿ **Accessibility** &nbsp;–&nbsp; ARIA, keyboard navigation, shortcuts, clear labels, and semantic HTML.
 
-**UX/UI** &nbsp;–&nbsp; A creative mix of bulletin board system/CLI themes with modern, responsive elements. Errors are more detailed/user-friendly than DropBox and UI is noticeably faster for a seamless experience.
+🎨 **UX/UI** &nbsp;–&nbsp; A creative mix of bulletin board system/CLI themes with modern, responsive elements. Errors are more detailed/user-friendly than DropBox and UI is noticeably faster for a seamless experience.
 
 **Code Quality** &nbsp;–&nbsp; Improved type safety and documentation through use of TypeScript, PHPDoc/type hinting, and PHPStan - leading to a high reduction in runtime errors and time spent debugging them. 
 
