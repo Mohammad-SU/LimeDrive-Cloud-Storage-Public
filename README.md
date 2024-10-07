@@ -62,7 +62,7 @@ Click to expand
 
 **UX/UI** &nbsp;–&nbsp; A creative mix of bulletin board system/CLI themes with modern, responsive elements. Errors are more detailed/user-friendly than DropBox and UI is noticeably faster for a seamless experience.
 
-**Code Quality** &nbsp;–&nbsp; Excellent type safety and documentation through use of TypeScript, PHPDoc/type hinting, and PHPStan - leading to a high reduction in runtime errors and time spent debugging them. 
+**Code Quality** &nbsp;–&nbsp; Improved type safety and documentation through use of TypeScript, PHPDoc/type hinting, and PHPStan - leading to a high reduction in runtime errors and time spent debugging them. 
 
 **Concurrency Control** &nbsp;–&nbsp; DB constraints, transactions, mutexes, and graceful exception handling allows for robust concurrent operations to avoid race conditions.
 
