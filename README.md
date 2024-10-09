@@ -1,8 +1,13 @@
-## 🧪 Test the Program: [LimeDrive.net](https://limedrive.net)
+<h2 align="center">
+    Test the Program: <a href="https://limedrive.net">LimeDrive.net</a>
+</h2>
 
-<video src="https://r2-showcase.limedrive.net/Earth.webm" controls="controls" width="600">
-    Your browser does not support the video tag.
-</video>
+
+<h3 align="center">
+    <a href="https://www.youtube.com/watch?v=QyLh4JjyAFw">[Click to view video demo]</a>
+</h3>
+
+[![LimeDrive Demo](screenshots/yt-video-img.png)](https://www.youtube.com/watch?v=QyLh4JjyAFw "LimeDrive Demo")
 
 <p align="center">
   <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react" alt="React Badge">
