@@ -40,16 +40,16 @@ Click to expand
 > UI borders may seem low quality in the screenshots. You can zoom in for better details. For more info and to see the features in action, go to the video demo above.
 </summary>
   
-### File List (Clean UI)
+### File List - Clean UI
 ![File List (Clean UI)](screenshots/file-list-clean-UI.png)
 
-### File Viewer (Video and Controls)
+### File Viewer - Video and Controls
 ![File Viewer (Video and Controls)](screenshots/file-viewer-video.png)
 
-### File List (Detailed UI With Item Selection, Drag and Drop, and Upload Queue)
+### File List - Detailed UI With Item Selection, Drag and Drop, and Upload Queue
 ![File List (Detailed UI With Item Selection, Drag and Drop, and Upload Queue](screenshots/file-list-detailed-UI.png)
 
-### File Viewer (PDF and Shareable Link Generation)
+### File Viewer - PDF and Shareable Link Generation
 ![File Viewer (PDF and Shareable Link Generation)](screenshots/file-viewer-pdf-share-modal.png)
 
 ### Settings
@@ -57,6 +57,12 @@ Click to expand
 
 ### Login
 ![Login](screenshots/login.png)
+
+### Responsive Design - Usable on Varied Screen Sizes
+<p align='center'>
+    <img src="screenshots/mobile-file-list.jpg" width="37%">
+    <img src="screenshots/mobile-file-viewer.jpg" width="37%">
+</p>
 
 </details>
 
