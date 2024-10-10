@@ -37,7 +37,7 @@ The LimeDrive codebase is mostly closed-source, with only a fraction of its code
 <summary>
 Click to expand
 
-> UI borders may seem low quality in the screenshots. You can zoom in for better details.
+> UI borders may seem low quality in the screenshots. You can zoom in for better details. For more info and to see the features in action, see the video demo above.
 </summary>
   
 ### File List (Clean UI)
