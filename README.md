@@ -26,7 +26,7 @@
 A robust cloud storage/file hosting service that I solo-developed for over a year, with some areas surpassing Dropbox/Google Drive (particularly speed). Seamlessly manage and view files in LimeDrive's sleek retro UI - secure, fast, and performant.
 
 > [!NOTE]
-The LimeDrive codebase is mostly closed-source, with only a fraction of its code available in this public repo (with inaccurate folder naming conventions) - this is because the code here is primarily meant for showcase (even for those with no experience with the technologies used) and may not function properly if you attempt to run it in your local environment with no other dependencies or changes. With that said, feel free to use what's here as inspiration.
+The LimeDrive codebase is partly closed-source, with only a fraction of its code available in this public repo (with inaccurate folder naming conventions) - this is because the code here is primarily meant for showcase (even for those with no experience with the technologies used) and may not function properly if you attempt to run it in your local environment with no other dependencies or changes. With that said, feel free to use what's here as inspiration.
 > 
 > If you're an employer, you can request to see more of the code during an interview.
 
