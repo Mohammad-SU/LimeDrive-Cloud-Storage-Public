@@ -4,10 +4,10 @@
 
 
 <h3 align="center">
-    <a href="https://www.youtube.com/watch?v=QyLh4JjyAFw">[Click to view video demo]</a>
+    <a href="https://youtu.be/3P_LIRLbSy4">[Click to view video demo]</a>
 </h3>
 
-[![LimeDrive Demo](screenshots/yt-video-img.png)](https://www.youtube.com/watch?v=QyLh4JjyAFw "LimeDrive Demo")
+[![LimeDrive Demo](screenshots/yt-video-img.png)](https://youtu.be/3P_LIRLbSy4)
 
 <p align="center">
   <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react" alt="React Badge">
