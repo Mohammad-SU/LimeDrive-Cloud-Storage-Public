@@ -1,0 +1,75 @@
+.Toast {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    flex-direction: row;
+    gap: 0.4rem;
+
+    font-size: 1.1rem;
+    width: fit-content;
+    padding: 1rem;
+    padding-bottom: 0.8rem;
+    margin: 0 auto;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+
+    background: $neutral;
+    border-bottom: none;
+    clip-path: url(#toastClip);
+    
+    &:before { // Used due to $primary border not looking nice when directly above $primary elements (this :before makes it seem like it has a black outline while also dealing with clip-path issue with CSS outline)
+        content: " ";
+        position: absolute;
+        z-index: -1;
+        top: .0938rem;
+        left: .0938rem;
+        right: .0938rem;
+        bottom: 0;
+        border: .125rem dashed $primary;
+        border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+    }
+
+    .toast-icon {
+        font-size: 1.4rem;
+        margin-right: 0.1rem;
+        flex-shrink: 0;
+
+        &.fail {
+            font-size: 1.3rem;
+            padding: 0.1rem;
+            margin-right: 0.2rem;
+            border: .125rem solid $primary;
+            border-radius: 50%;
+        }
+    }
+
+    .toast-spinner {
+        &.spinner-before {
+            margin-right: 0.7rem;
+        }
+        &.spinner-after {
+            margin-left: 0.7rem;
+        }
+    }
+
+    .btn-wrapper {
+        margin-left: 1.9rem;
+        font-size: 1.05rem;
+
+        .close-btn {
+            margin-left: 0.8rem;
+
+            &.decrease-gap {
+                margin-left: 0;
+            }
+        }
+    }
+}

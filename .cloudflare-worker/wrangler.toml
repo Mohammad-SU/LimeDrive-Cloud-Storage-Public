@@ -1,0 +1,17 @@
+name = "sign-url-worker"
+main = "src/index.ts"
+compatibility_date = "2024-05-08"
+compatibility_flags = [ "nodejs_compat" ]
+
+[[routes]]
+pattern = "r2.limedrive.net/*"
+zone_name = "limedrive.net"
+
+[placement]
+mode = "smart"
+
+[[unsafe.bindings]]
+name = "SIGN_URL_RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 10000, period = 60 }

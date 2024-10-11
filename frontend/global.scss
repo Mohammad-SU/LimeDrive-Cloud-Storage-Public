@@ -1,0 +1,199 @@
+:root {
+    --primary: #{$primary}; // For use in react component
+}
+
+html {
+    min-height: 100%;
+    color-scheme: dark;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+body {
+    font-family: "consolasregular";
+    background: $neutral;
+    min-height: 100%;
+    margin: 0;
+    color: $primary;
+    box-sizing: border-box;
+    cursor: default;
+
+    @media print {
+        color: black;
+        background-color: white;
+        font-size: 1.7rem;
+        // For some reason setting margin with @page wasn't working (didn't set directly to element since user can't easily edit it otherwise)
+        .text-preview-print {
+            display: block !important;
+        }
+    }
+}
+    input {
+        border: none;
+        outline: none;
+
+        &:-webkit-autofill::first-line,
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            filter: none !important;
+            transition: background-color 0s 600000s, color 0s 600000s !important; // Override chrome autofill background style, which works for some reason
+            font-family: "consolasregular" !important; // For security reasons it seems font can't be overrided for webkit autofill
+        }
+    }
+
+    input {
+        color: inherit;
+        font-family: inherit;
+        background-color: inherit;
+        
+        &::placeholder {
+            color: $placeholder-color;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+
+    [disabled] {
+        cursor: not-allowed !important;
+        opacity: 0.7 !important;
+    }
+
+    ::-webkit-scrollbar:horizontal{ 
+        height: .5rem;
+    }
+    ::-webkit-scrollbar {
+        width: .8rem;
+    }
+
+        ::-webkit-scrollbar-track {
+            background: $neutral;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-image: url("data:image/svg+xml,%3Csvg fill='#{$primary}' version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 1792 1792' xml:space='preserve' stroke='#{$primary}'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpolygon points='773.8,1415.2 520.6,1415.2 895.6,1792.6 1272.2,1414.4 1009.5,1414.4 1009.5,376.1 1017.4,376.1 1272.2,376.1 895.6,-0.6 519.8,376.1 773.8,376.1 '%3E%3C/polygon%3E%3C/g%3E%3C/svg%3E");
+            background-size: 1rem;
+            background-position: center, center;
+            background-repeat: no-repeat;
+            border: .0625rem solid $primary;
+            border-right: none;
+            cursor: pointer !important;
+            
+            &:hover { // Don't use hover-supported()
+                background-color: $scrollbar-hover-color;
+            }
+        }
+
+    ::-ms-reveal {
+        display: none
+    }
+
+    ::selection {
+        background-color: $text-selection-color;
+        color: $primary;
+    }
+
+@keyframes rotateLine {
+    0% {
+        content: '/';
+    }
+    25% {
+        content: '—';
+    }
+    50% {
+        content: '\\';
+    }
+    75% {
+        content: '|';
+    }
+    100% {
+        content: '/';
+    }
+}
+
+button, a.underline-link, .dropdown-link {
+    @include btn-selection-styles;
+    appearance: none;
+    background: $neutral;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    color: inherit;
+
+    &:disabled {
+        color: $btn-disabled-text-color;
+        cursor: not-allowed;
+    }
+
+    &.btn-icon-wrapper {
+        display: block;
+        background-color: transparent;
+        @include other-selection-styles;
+    }
+    &.text-btn-no-underline {
+        @include other-selection-styles;
+        background-color: black !important;
+    }
+    &.text-btn, &.underline-link {
+        @include text-btn-selection-styles;
+        background-color: black !important;
+        text-decoration: underline;
+        text-decoration-color: $link-decoration-color;
+        text-underline-offset: 0.4rem;
+    }
+    
+    .btn-icon {
+        display: block; // Fix sizing issue
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    
+    &:not(.dropdown-btn-link, .dropdown-link) {
+        @include other-selection-styles;
+    }
+}
+
+.delayed-shadow {
+    opacity: 1;
+}
+
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: .125rem dashed $primary;
+    outline-offset: .1875rem;
+}
+
+.main-section-heading {
+    margin: 1.1rem 0;
+    font-size: 1.7rem;
+}
+
+.disabled {
+    color: $btn-disabled-text-color;
+    cursor: not-allowed;
+}
+
+.Watermark {
+    position: fixed;
+    bottom: 0.4rem;
+    right: 0.4rem;
+    font-size: 0.8rem;
+    color: $primary-darker;
+    margin: 0;
+
+    .underline {
+        text-decoration: underline;
+        text-underline-offset: 0.2rem;
+    }
+}
+

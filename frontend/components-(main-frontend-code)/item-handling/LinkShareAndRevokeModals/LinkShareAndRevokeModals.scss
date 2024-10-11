@@ -1,0 +1,96 @@
+body .link-share-modal { // use body for increased specificity
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    height: fit-content;
+    min-height: 4rem;
+    max-width: 29.4rem;
+    width: 100%;
+    padding: 1.7rem;
+    padding-top: 1.4rem;
+    box-sizing: border-box;
+
+    margin: 0;
+    top: initial; 
+    left: initial; // Set to initial to prevent conflict between parent Modal styles and React code for positioning share links modal
+    right: initial;
+    bottom: initial;
+
+    z-index: 99999;
+
+    .close-btn {
+        top: .4rem;
+        right: .4rem;
+    }
+
+    p {
+        margin: 0;
+        font-size: 1.1rem;
+
+        &.loading-text {
+            margin-bottom: .7rem;
+        }
+        &.error-text {
+            margin-bottom: -0.2rem;
+            text-align: center;
+        }
+        &.success-text {
+            font-size: 1rem;
+            word-break: break-word;
+        }
+    }
+
+    @media (max-width: 376px) {
+        .LoadingBar {
+            font-size: .94rem;
+        }
+    }
+    @media (max-width: 355px) {
+        .LoadingBar {
+            font-size: .85rem;
+        }
+    }
+    @media (max-width: 330px) {
+        .LoadingBar {
+            font-size: .82rem;
+        }
+    }
+
+    .input-and-btn-cont {
+        display: flex;
+        margin-top: 1rem;
+        width: 100%;
+
+        input {
+            width: 100%;
+            border: .0625rem solid $primary;
+            padding: 0.5rem;
+            box-sizing: border-box;
+            font-size: 0.85rem;
+        }
+
+        .modal-primary-btn {
+            border-left: none;
+        }
+    }
+}
+
+.link-share-modal-backdrop {
+    background: transparent;
+    z-index: 99998;
+}
+
+.revoke-link-share-modal {
+    display: flex;
+    align-items: center;
+    height: 18rem;
+    width: 25rem;
+    z-index: 999999 !important;
+}
+
+.revoke-link-share-backdrop {
+    z-index: 999998;
+}

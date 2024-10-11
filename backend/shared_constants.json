@@ -1,0 +1,11 @@
+{
+    "MAX_USER_FILE_NUM": 350,
+    "MAX_USER_FOLDER_NUM": 150,
+    "APP_PATH_LIMIT": 500,
+
+    "MAX_ITEM_NUM_ERR_MSG": "Max number of this item reached.",
+    "DUPLICATE_NAME_ERR_MSG": "Disallowed duplicate name and parentFolderId detected.",
+    "ACCOUNT_STORAGE_CAP_ERR_MSG": "Account storage cap would be exceeded.",
+    
+    "INVALID_ITEM_NAME_CHARS": "<>\\/:?*\"|"
+}

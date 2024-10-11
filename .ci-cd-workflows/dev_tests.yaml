@@ -1,0 +1,132 @@
+name: Test dev services on push to dev
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  super-linter:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
+
+      - name: Super-linter
+        uses: super-linter/super-linter@v7.1.0 # x-release-please-version
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Use latest patch ver for bug/security fixes
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Install Doppler CLI for env vars
+        uses: dopplerhq/cli-action@v3
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache/files
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Cache npm packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # 'composer/npm run' commands already have 'doppler run --' in them for access to env vars
+      - name: Setup and start backend
+        working-directory: ./backend
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_BACKEND_TOKEN }}
+        run: |
+          doppler run -- composer install
+
+          # Don't need to migrate as tests would use development database if needed
+          # Start dev server and wait for spin up
+          composer run dev &
+          sleep 15
+
+      - name: Run backend tests
+        working-directory: ./backend
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_BACKEND_TOKEN }}
+        run: composer run test
+        continue-on-error: true
+        
+      - name: Run backend static analysis
+        working-directory: ./backend
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_BACKEND_TOKEN }}
+        run: composer run phpstan
+        continue-on-error: true
+
+      # 'composer/npm run' commands have 'doppler run --' in them for access to env vars
+      - name: Setup and start frontend
+        working-directory: ./frontend
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_FRONTEND_TOKEN }}
+        run: |
+          npm ci
+          npm run build
+          npx playwright install
+
+          # Start dev server and wait for spin up
+          npm run dev &
+          sleep 15
+
+      # For e2e tests
+      - name: Setup cf worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: sign-url-worker
+
+      # Put as step afterwards instead of in postCommands in previous step, 
+      # to prevent npm run start from stopping further steps 
+      - name: Start cf worker
+        run: | 
+          npm run start &
+          sleep 15
+        working-directory: ./sign-url-worker
+
+      - name: Run frontend tests
+        working-directory: ./frontend
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_FRONTEND_TOKEN }}
+        run: npm run test

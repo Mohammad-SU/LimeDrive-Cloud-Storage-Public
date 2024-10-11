@@ -1,0 +1,70 @@
+.file-content-wrapper {
+    > .video-preview, .img-preview {
+        display: block; // For removing extra space
+        user-select: none; // User can still open context menu on image after right-click
+    
+        &.img-preview {
+            // Keep original height and width if possible, OR as much as can be  fit within the viewer while still keeping 
+            // aspect ratio. Since it may be more important to keep original height/width (otherwise user may not know if 
+            // they have a really small image
+            width: auto; 
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+
+            background: 
+            repeating-conic-gradient(rgb(54, 54, 54) 0% 25%, rgb(26, 26, 26) 0% 50%) 
+                50% / 1.25rem 1.25rem;
+        }
+        &.video-preview {
+            // Reach full height/width regardless of original video height/width but still keeping aspect ratio.
+            // Not as important to match exact height/width compared to image where it may be important.
+            height: 100%;
+            width: 100%; // This still keeps the aspect ratio
+            cursor: pointer;
+
+            &.not-loaded { // match LoadingInfo as when video not loaded the element may appear too small
+                @include file-viewer-loading-info-size;
+            }
+        }
+    }
+    
+    > .iframe-preview { // Can't change LimeDrive readme styles from here
+        display: block;
+        height: 100dvh;
+        max-height: 100%;
+
+        border: none;
+        user-select: none; // User can still select within it, just not the entire iframe itself
+    }
+    
+    > .audio-preview {
+        // Changing this may look strange while the audio preview is actually on screen,
+        // so to see a more accurate result reopen the audio file after changing any styles
+        display: block;
+        width: 100dvw;
+        max-width: 30rem;
+    
+        &::-webkit-media-controls-enclosure {
+            background: $neutral;
+            border-radius: 0;
+        }
+    }
+    
+    > .text-preview {
+        height: 100dvh;
+        max-height: 100%;
+        font-size: .97rem;
+        color: $primary;
+        background: $neutral;
+        // Despite gutter, the right side gap may seem slightly larger than left at
+        // times as text may not always wrap at the very end of the right side
+        scrollbar-gutter: stable both-edges; 
+        
+        // A lot of the styles for this is actually controlled by Row and <List> styles in the component
+    }
+
+    > .text-preview-print {
+        display: none;
+    }
+}

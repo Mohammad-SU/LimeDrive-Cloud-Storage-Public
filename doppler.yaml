@@ -1,0 +1,11 @@
+setup:
+  - project: limedrive
+    config: dev_backend
+    path: backend/
+
+  - project: limedrive
+    config: dev_frontend
+    path: frontend/
+
+# If changing this file, make sure to run the following command in this project's root after:
+# doppler setup --no-interactive 

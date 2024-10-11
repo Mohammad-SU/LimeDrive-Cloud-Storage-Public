@@ -1,0 +1,71 @@
+.LoadingPage {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    background: $neutral;
+    @include lime-ascii-bg; // Tried adding spinning gear ASCII to LoadingPage but ran into various issues
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        margin-bottom: 2.5rem;
+        font-size: 2rem;
+
+        @media (max-width: 920px) {
+            padding: 0 0.5rem;
+            font-size: 1.7rem;
+        }
+        @media (max-width: 730px) {
+            font-size: 1.5rem;
+        }
+        @media (max-width: 630px) {
+            font-size: 1.4rem;
+        }
+        @media (max-width: 500px) {
+            font-size: 1.15rem;
+        }
+        @media (max-width: 405px) {
+            font-size: 1.1rem;
+        }
+    
+        p {
+            margin: 0;
+            margin-bottom: -.2rem;
+            max-width: 50rem;
+        }
+
+        .LoadingBar {
+            margin-bottom: -2rem; // Don't put negative margin in wrapper so that if LoadingBar is not rendered but message is, then the message doesn't look too low down
+            margin-top: 1rem;
+
+            @media (max-width: 370px) {
+                font-size: 1rem;
+            }
+            @media (max-width: 340px) {
+                font-size: 0.95rem;
+            }
+        }
+
+        &.not-loading {
+            p {
+                margin-bottom: -1.3rem;
+            }
+        }
+
+        .warning {
+            position: absolute;
+            padding: 0 .9rem;
+            font-size: .9rem;
+            opacity: .7;
+            bottom: 2.5rem;
+        }
+    }
+}

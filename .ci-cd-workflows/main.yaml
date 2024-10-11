@@ -1,0 +1,50 @@
+name: Deploy prod services on push to production
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Filter changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+            frontend:
+              - 'frontend/**'
+            cloudflare_worker:
+              - 'sign-url-worker/**'
+            shared_constants:
+              - 'backend/shared_constants.json'
+
+      # Don't need to change working-directory here nor handle predeploy commands for the frontend/backend here.
+      # That is handled in the config on Cloudflare/Render respectivly, and also for the backend with docker/supervisord
+      # This also means that there's no point in copying shared constants into each directories as those deployments don't use this environment (instead they use the latest state of the actual repo for their directories)
+      # shared_constants.json is copied into frontend in prebuild command, but exists on the backend by default (with an untracked symlink locally - for safety)
+
+      - name: Deploy backend to Render
+        if: steps.changes.outputs.backend == 'true' || steps.changes.outputs.shared_constants == 'true'
+        run: |
+          curl -X POST ${{ secrets.BACKEND_PROD_DEPLOY_HOOK }}
+
+      - name: Deploy frontend to Cloudflare
+        if: steps.changes.outputs.frontend == 'true' || steps.changes.outputs.shared_constants == 'true'
+        run: |
+          curl -X POST ${{ secrets.FRONTEND_PROD_DEPLOY_HOOK }}
+
+      - name: Deploy Cloudflare worker
+        uses: cloudflare/wrangler-action@v3
+        if: steps.changes.outputs.cloudflare_worker == 'true'
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: sign-url-worker

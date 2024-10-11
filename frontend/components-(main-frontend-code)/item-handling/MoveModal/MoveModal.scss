@@ -1,0 +1,102 @@
+.MoveModal {    
+    max-width: 31rem;
+    height: 30rem;
+
+    h1 {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
+    }
+    
+    .Breadcrumb {
+        font-size: 1.1rem !important;
+        margin-bottom: 0.5rem;
+
+        > .item:last-child {
+            display: flex; 
+                       
+            button {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        .dropdown {
+            font-size: 1.1rem;
+            max-width: 16rem;
+            margin-top: 1.9rem;
+            max-height: 20.8rem;
+
+            button {
+                height: 2.3rem;
+            }
+        }
+    }
+
+    .move-list {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        height: 21rem;
+
+        &::-webkit-scrollbar {
+            width: 0.8rem;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-right: .0625rem solid $primary
+        }
+
+        .folder {
+            @include btn-selection-styles;
+            position: relative;
+            flex-shrink: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            height: 2.1rem;
+            padding: 1.028rem 0;
+            padding-right: 2.2rem; // To make text overflow elipses start further from edge
+            margin-right: .1563rem; // For some reason it overlapped scrollbar without margin
+            border-bottom: .0625rem solid $list-border-color;
+
+            &.selected-for-moving {
+                &::after {
+                    position: absolute;
+                    content: "[Selected for moving]";
+                    right: 0.7rem;
+                    bottom: 0.4rem;
+                    font-size: 0.7rem;
+                }
+            }
+            &.move-selected {
+                background: $selected-color;
+            }
+
+            &-icon {
+                flex-shrink: 0;
+                font-size: 2.3rem;
+                margin-bottom: 0.1rem;
+                width: 3.6rem;
+            }
+            .text-cont {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: fit-content;
+            }
+            .subfolders-indicator {
+                position: absolute;
+                right: 0.9rem;
+                margin-top: -0.2rem;
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+    .modal-primary-btn {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

@@ -1,0 +1,51 @@
+.delete-modal {
+    width: fit-content;
+    max-width: 40rem;
+    height: fit-content;
+    top: -2rem;
+
+    h1 {
+        margin-top: 0.2rem;
+    }
+
+    .main-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 1.1rem;
+        margin-bottom: 2.2rem;
+        gap: 0.8rem;
+        
+        .warning-icon {
+            font-size: 3.2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin: 0;
+            max-width: 100%;
+            word-break: break-word;
+            white-space: nowrap;
+
+            .content-type {
+                white-space: normal;
+            }
+
+            strong {
+                text-decoration: underline;
+                text-underline-offset: 0.1rem;
+            }
+
+            &:last-of-type {
+                margin: 0;
+                text-align: center;
+            }
+            
+            @media (max-width: 370px) {
+                // This may cause long .content-type with no spaces to start at new line for some reason but it's a minor issue.
+                // Wasn't able to fix without causing other issues. And without this the modal stops decreasing in width.
+                white-space: normal;
+            }
+        }
+    }
+}

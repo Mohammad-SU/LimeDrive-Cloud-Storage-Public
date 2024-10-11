@@ -1,0 +1,71 @@
+$steps: 30;
+
+.LoadingBar {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 370px) {
+        $steps: 25;
+    }
+
+    .loading-bar::after {
+        content: "";
+        animation: fillLoadingBar 1s steps($steps) infinite;
+    }
+    .progress-bar::after {
+        content: "";
+    }
+
+    @function generate-bar($total, $filled) {
+        $bar: "";
+        $fill: "#";
+        $empty: "-";
+      
+        @for $i from 1 through $total {
+            $bar: if($i <= $filled, $bar + $fill, $bar + $empty);
+        }
+      
+        @return "[#{$bar}]";
+    }
+
+    @keyframes fillLoadingBar {
+        @for $i from 0 through $steps {
+            $percentage: calc(($i / $steps) * 100%);
+            #{$percentage} {
+                content: generate-bar($steps, $i);
+            }
+        }
+    
+        97% { // Leave this
+            content: generate-bar($steps, $steps);
+        }
+    }
+}
+
+.spinner-before { 
+    &::before {
+        content: '';
+        animation: rotateLine 0.5s linear infinite;
+        animation-play-state: running;
+    }
+
+    &.loading-bar-spinner-before {
+        &::before {
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+.spinner-after { // Leave outside .LoadingBar enclosure since this is used in other parts of the app
+    &::after {
+        content: '';
+        animation: rotateLine 0.5s linear infinite;
+        animation-play-state: running;
+    }
+
+    &.loading-bar-spinner-after {
+        &::after {
+            margin-left: 0.5rem;
+        }
+    }
+}

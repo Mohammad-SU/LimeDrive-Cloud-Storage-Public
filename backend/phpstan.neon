@@ -1,0 +1,16 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app/
+
+    # Level 9 is the highest level
+    level: 7
+    treatPhpDocTypesAsCertain: false
+    checkGenericClassInNonGenericObjectType: false
+
+    ignoreErrors:
+#       - '#PHPDoc tag @var#'
+       - '#Call to an undefined method Laravel\\Sanctum\\Contracts\\HasAbilities::delete\(\)#'

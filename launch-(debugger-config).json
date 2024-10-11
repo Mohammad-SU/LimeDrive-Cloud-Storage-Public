@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug React (Chrome Attach)", // Make sure to open {REDACTED} chrome profile from the DESKTOP shortcut at start (close all current tabs if you haven't dont this and then do this) because it has remote debugging flag
+            "port": 9222,
+            "request": "attach",
+            "type": "chrome",
+            "webRoot": "${workspaceFolder}/frontend",
+            "urlFilter": "http://localhost:5173/*"
+        },
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "{REDACTED}": "${workspaceFolder}/backend"
+            },
+            "log": true
+        }
+    ]
+}

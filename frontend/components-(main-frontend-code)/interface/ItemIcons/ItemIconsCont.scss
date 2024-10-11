@@ -1,0 +1,88 @@
+.ItemIconsCont {
+    display: flex;
+    justify-content: center;
+    width: 3.7rem;
+    flex-shrink: 0; // Leave this
+
+    &:hover { // Don't use hover-supported mixin as this should be usable even on mobile
+        .tooltip {
+            visibility: visible;
+        }
+    }
+
+    .main-icon {
+        position: relative;
+        font-size: 2.2rem;
+
+        &.folder-icon {
+            font-size: 2.4rem;
+            margin-bottom: 0.1rem;
+
+        }
+        &.video-icon {
+            font-size: 2.1rem;
+        }
+        &.audio-icon {
+            font-size: 2.4rem;
+        }
+        &.image-icon {
+            font-size: 2rem;
+        }
+        &.clipped-icon {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 58%, 0% 58%);
+        }
+        &.code-icon {
+            font-size: 1.9rem;
+        }
+        &.file-earmark-icon {
+            margin-bottom: 0.1rem;
+        }
+    }
+    .file-icon-text {
+        position: absolute;
+        font-weight: bold;
+        font-size: 1rem;
+        letter-spacing: .0938rem;
+        background: inherit;
+        margin-top: 1.1rem;
+        margin-left: .16rem; // Use margin left as extra styling just to center is unnecessary
+        user-select: none;
+
+        &.four-chars {
+            font-size: 0.9rem;
+        }
+    }
+
+    .conflict-icon {
+        position: absolute;
+        font-size: 0.9rem;
+        padding: 0.1rem;
+        margin-top: -0.4rem;
+        margin-left: -1.7rem;
+        border: .125rem solid $primary;
+        border-radius: 50%;
+        stroke-width: 2rem;
+        background: $neutral;
+
+        &.folder-conflict-icon {
+            margin-top: -0.3rem;
+        }
+    }
+    .tooltip {
+        position: absolute;
+
+        top: 50%;
+        left: 2rem;
+        transform: translate(0, -50%);
+
+        width: fit-content;
+        white-space: nowrap;
+        padding: 0.6rem;
+        font-size: 0.8rem;
+
+        text-align: center;
+        background: $neutral;
+        outline: .0625rem solid $primary;
+        visibility: hidden;
+    }
+}

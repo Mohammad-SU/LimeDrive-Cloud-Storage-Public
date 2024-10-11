@@ -1,0 +1,196 @@
+$primary: lime;
+$neutral: black;
+
+$primary-darker: scale-color($primary, $blackness: 30%);
+
+$btn-hover-color: scale-color($primary, $blackness: 85%);
+$btn-active-color: scale-color($primary, $blackness: 90%);
+$btn-disabled-text-color: scale-color($primary, $blackness: 20%);
+
+$primary-btn-color: scale-color($primary, $blackness: 75%);
+$primary-btn-hover-color: scale-color($primary, $blackness: 70%);
+$primary-btn-active-color: scale-color($primary, $blackness: 75%);
+
+$selected-color: scale-color($primary, $blackness: 75%);
+$selected-hover-color: scale-color($primary, $blackness: 70%);
+$selected-delayed-color: scale-color($primary, $blackness: 65%);
+
+$other-hover-color: scale-color($primary, $blackness: 20%);
+$other-active-color: scale-color($primary, $blackness: 10%);
+
+$scrubber-progress-color: scale-color($primary, $blackness: 40%);
+$scrubber-buffer-color: scale-color($primary, $blackness: 70%);
+
+$dragging-item-color: scale-color($primary, $blackness: 85%);
+$processing-item-color: scale-color($primary, $blackness: 90%);
+$list-border-color: scale-color($primary, $blackness: 75%);
+$list-border-lighter-color: scale-color($primary, $blackness: 65%);
+
+$scrollbar-hover-color: scale-color($primary, $blackness: 75%);
+$placeholder-color: scale-color($primary, $blackness: 45%);
+$spinner-color: scale-color($primary, $blackness: 50%);
+$link-decoration-color: scale-color($primary, $blackness: 45%);
+$text-selection-color: transparentize($primary, 0.6);
+
+$checkbox-hover-color: scale-color($primary, $alpha: -75%); // Leave as alpha
+$checkbox-active-color: scale-color($primary, $alpha: -85%);
+
+$storage-bar-border-color: scale-color($primary, $blackness: 50%);
+$storage-bar-fill-color: scale-color($primary, $blackness: 60%);
+
+@mixin hover-supported {
+    // Disable hover for touch events, fix specificity issue
+    :where(body.hasHover) &:hover { 
+        @content;
+    }
+}
+
+@mixin no-hover {
+    :where(body:not(.hasHover)) & {
+        @content;
+    }
+}
+
+@mixin btn-selection-styles {
+    @include hover-supported() {
+        background-color: $btn-hover-color;
+    }
+    &:active {
+        background-color: $btn-active-color;
+    }
+
+    &.selected {
+        background-color: $selected-color;
+
+        @include hover-supported() {
+            background-color: $selected-hover-color;
+        }
+    }
+
+    cursor: pointer;
+}
+
+@mixin primary-btn-styles {
+    background: $primary-btn-color;
+
+    @include hover-supported() {
+        &:not(:disabled) {
+            background: $primary-btn-hover-color;
+        }
+    }
+    &:active {
+        background: $primary-btn-active-color !important;
+    }
+    &:disabled {
+        background: $neutral;
+    }
+}
+
+
+@mixin other-selection-styles {
+    @include hover-supported() {
+        cursor: pointer;
+        color: $other-hover-color;
+    }
+    &:active {
+        color: $other-active-color;
+    }
+}
+
+@mixin text-btn-selection-styles {
+    @include hover-supported() {
+        cursor: pointer;
+        text-decoration-color: $primary;
+    }
+    &:active {
+        text-decoration-color: $other-hover-color; // variable says hover but using it for the active here
+    }
+}
+
+@mixin dropdown-item-focus-offset {
+    &:focus-visible {
+        outline-offset: -.125rem;
+    }
+}
+
+@mixin lime-ascii-bg {
+     // I attempted to do other things like adding animation as background but I ran into various issues/they didn't
+     // look very good, so I opted for a more old-school repeating background as it fits the retro theme without much issue
+     &::before {
+        content: "";
+        position: fixed;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/src/assets/images/ascii/lime.png');
+        background-repeat: space;
+        background-size: 10rem 8.5rem;
+        animation: fadeIn 0.5s ease-in-out forwards;
+
+        @media (max-width: 479px) {
+            background-size: 8rem 7.5rem;
+        }
+        @media (max-width: 384px) {
+            background-size: 7rem 6.5rem;
+        }
+        @media (max-width: 336px) {
+            background-size: 6rem 5.5rem;
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 0.35; }
+    }
+}
+
+@mixin dropdown-arrow($centered: false, $moreToolsSelection: false, $moreToolsFileViewer: false, $userDropdown: false, $moreVideoControls: false) {
+    &::before {
+        content: '';
+        position: absolute;
+        top: -0.5rem;
+        width: 0;
+        height: 0;
+        border-left: 0.5rem solid transparent;
+        border-right: 0.5rem solid transparent;
+        border-bottom: 0.5rem solid $primary;
+
+        @if $centered {
+            left: 50%;
+            transform: translateX(-50%);
+        } @else if $moreToolsSelection {
+            right: .86rem;
+        } @else if $moreToolsFileViewer {
+            right: .45rem;
+        } @else if $userDropdown {
+            right: .61rem;
+        } @else if $moreVideoControls {
+            top: unset;
+            bottom: -.5rem;
+            border-bottom: none;
+            border-top: 0.5rem solid $primary;
+            right: .55rem;
+
+        } @else {
+            right: .5rem
+        }
+    }
+}
+
+@mixin file-viewer-loading-info-size {
+    @include file-viewer-max-width;
+    width: 100%;
+    height: 25rem;
+    padding: 2rem;
+    box-sizing: border-box;
+
+    @media (max-width: 500px) {
+        padding: 1rem;
+    }
+}
+
+@mixin file-viewer-max-width { // here since its wrapper also has it
+    max-width: 43rem;
+}

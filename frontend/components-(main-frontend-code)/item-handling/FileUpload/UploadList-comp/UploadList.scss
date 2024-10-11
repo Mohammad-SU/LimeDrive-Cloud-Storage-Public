@@ -1,0 +1,191 @@
+.UploadList {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: .0625rem solid $primary;
+    border-top: none;
+    border-bottom: none;
+
+    font-size: 0.9rem;
+    max-height: 20.6rem; // Make it so 4 files can fit without overflow y
+    padding: 0 1rem;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-thumb {
+        border: none;
+        outline: .0625rem solid $primary;
+    }
+    &::-webkit-scrollbar-track {
+        outline: .0625rem solid $primary;
+    }
+
+    .file {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 4rem;
+        padding: 1.1rem 0;
+        border-bottom: .0625rem solid $list-border-color;
+        border-left: none;
+        border-right: none;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .ItemIconsCont {
+            margin-left: -.8rem;
+        }
+        
+        .file-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 1rem;
+            
+            .name, .status {
+                white-space: nowrap; // Leave both of these blocks related to text overflow
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &:empty {
+                    display: none;
+                }
+            }
+
+            .link {
+                text-decoration: underline;
+                text-underline-offset: 0.15rem;
+
+                @include hover-supported() {
+                    opacity: .8;
+                }
+            }
+        }
+
+        .btn-cont {
+            display: flex;
+            gap: .5rem;
+        } // Dont nest the button styles inside .btn-cont as it's not always contained in there
+            button {
+                @include btn-selection-styles;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 2.7rem;
+                width: 2.7rem;
+                font-size: 1.3rem;
+
+                border: .0625rem solid $primary;
+                margin-left: auto;
+                flex-shrink: 0;
+
+                &.retry-btn {
+                    @include primary-btn-styles
+                }
+
+                .icon {
+                    &.cancel {
+                        font-size: 1.7rem;
+                    }
+
+                    &.retry {
+                        font-size: 1.5rem;
+                    }
+
+                    &.share {
+                        margin-right: .1rem;
+                    }
+                }
+            }
+    }
+
+    &::-webkit-scrollbar {
+        width: .7rem;
+    }
+        &::-webkit-scrollbar-track {
+            margin-top: -0.004rem; // Fix weird position issue at top
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-size: 0.9rem;
+        }
+
+    &.is-wide-as-viewport {
+        border-left: none;
+        border-right: none;
+
+        .file {
+            .file-info {
+                .status:has(.error-info-icon) { // has selector so that flex doesn't mess with overflow elipses on other status types
+                    display: flex;
+                    gap: .2rem;
+                    align-items: center;
+                    
+                    // Use hover instead of state so a user pressing outside 'closes' the tooltip easily
+                    // and leave it on hover of status as the tooltip container is small
+                    &:hover .error-msg-tooltip {
+                        visibility: visible !important;
+                        opacity: 1 !important;
+                    }
+
+                    .tooltip-and-msg-cont {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+
+                        .error-info-icon {
+                            display: block;
+                            font-size: 1.2rem;
+                        }
+        
+                        .error-msg-tooltip {
+                            position: fixed;
+                            
+                            max-width: 11.15rem;
+                            padding: 0.7rem 0.6rem;
+                            font-size: 0.8rem;
+
+                            margin-left: 1.5rem;
+                            z-index: 1;
+                        
+                            text-align: center;
+                            white-space: normal; // Allow text wrapping
+                            background: $neutral;
+                            outline: .0625rem solid $primary;
+                            
+                            visibility: hidden;
+                            opacity: 0;
+                            transition: opacity 0.2s, visibility 0.2s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 426px) {
+        padding: 0 .5rem;
+        font-size: .84rem;
+
+        .file {
+            .ItemIconsCont {
+                margin-right: -.3rem;
+                scale: .9;
+            }
+
+            button {
+                height: 2.3rem;
+                width: 2.3rem;
+                .icon {
+                    scale: .9;
+                }
+            }
+        }
+    }
+}

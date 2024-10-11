@@ -1,0 +1,116 @@
+.FileViewer {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    box-sizing: border-box;
+
+    // since VideoControls should be right at the bottom
+    // but also since .not-loaded has similar styles to loading info when video is loading, so to prevent position jumping.
+    // this selector means - if no (.video-preview with .not-loaded)
+    &:not(:has(.video-preview:not(.not-loaded))) { 
+        padding-bottom: 2rem;
+
+        @media (max-width: 1024px) {
+            padding-bottom: 1rem; // look more centered since FileViewerHeader has background
+        }
+    }
+
+    @media (max-width: 1024px) {
+        &:has(.video-preview, .text-preview, .iframe-preview) {
+            padding-bottom: 0 !important;
+
+            .FileViewerHeader {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    // Leave this as it's still possible for this class to happen without 1024px breakpoint
+    &.has-full-width-windowed-content {
+        padding-bottom: 0 !important;
+
+        .FileViewerHeader {
+            margin-bottom: 0;
+        }
+    }
+
+    &.fullscreen { // May look weird in responive dev tools mode
+        .FileViewerHeader {
+            display: none;
+        }
+
+        .video-preview {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        .VideoStateCont {
+            position: fixed; // appear above video
+            scale: 1.3;
+            z-index: 2;
+        }
+
+        .video-state-spinner {
+            position: fixed; // appear above video
+            scale: 1.3;
+            z-index: 2;
+        }
+    }
+
+    .file-content-wrapper {
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        // center the content in the space below the file viewer header
+        // also puts video controls in correct place
+        margin: auto;
+        overflow: auto;
+        overflow-x: hidden;
+        background: black;
+
+        &.loading-info-showing {
+            width: 100%;
+            @include file-viewer-max-width;
+        }
+        
+        &:focus-visible {
+            outline: none;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-right: .0625rem solid $primary;
+        }
+
+        > .FileContent-spinner {
+            position: absolute;
+            font-size: 2.3rem;
+            width: fit-content;
+            height: fit-content;
+            text-align: center;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            pointer-events: none; // Leave to not interfere with video state cont
+        }
+    }
+}
+
+.file-viewer-backdrop {
+    // Don't darken this for video controls loaded as the scrubber touch precision issue has been dealt with
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.fullscreen-backdrop {
+    background: black !important;
+}
