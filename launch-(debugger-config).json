@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug React (Chrome Attach)", // Make sure to open {REDACTED} chrome profile from the DESKTOP shortcut at start (close all current tabs if you haven't dont this and then do this) because it has remote debugging flag
+            "name": "Debug React (Chrome Attach)", // Make sure to open {REDACTED} chrome profile from the DESKTOP shortcut at start (close all current tabs if you haven't done this and then do this) because it has remote debugging flag
             "port": 9222,
             "request": "attach",
             "type": "chrome",
