@@ -148,7 +148,7 @@ class File extends Model
             'content-disposition' => $contentDisposition
         ]);
 
-        // Don't need to put host in HMAC.
+        // Don't need to put host in HMAC. Worker is not mapped to non-r2 hostnames anyway.
         $workerHost = Helpers::isEnvLocal() ? 
             'http://localhost:8787' // Local worker is http
             : 'https://r2.limedrive.net';
