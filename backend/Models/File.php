@@ -148,7 +148,7 @@ class File extends Model
             'content-disposition' => $contentDisposition
         ]);
 
-        // Don't need to put host in HMAC. I already implemented WAF rules and this worker can't be accessed by users outside of its subdomain and this hostname
+        // Don't need to put host in HMAC.
         $workerHost = Helpers::isEnvLocal() ? 
             'http://localhost:8787' // Local worker is http
             : 'https://r2.limedrive.net';
