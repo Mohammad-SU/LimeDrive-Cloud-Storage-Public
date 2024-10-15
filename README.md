@@ -79,11 +79,14 @@ Click to expand
 ⚡ **Cost and Performance Optimisation**
 >Integrates zero-egress-fee object storage, presigned URLs, no-cost cloud service tiers, CDN, caching, lazy loading, data deduplication, automated cleanup, throttling, and usage limits - these lead to ***zero costs*** in data storage/processing, ***+63.3% faster*** API in production, being ***+2.7x faster*** than DropBox in service speed, and improved scalability and UX.
 
+🚀 **Optimised Downloads** 
+>A web worker, multiple data streaming packages, piped async iterables, and presigned URLs allow ***GBs of downloads*** to ***initiate immediately*** with ***only bytes of server load***.
+
 🔒 **Security** 
 >Client/server validation, encryption, hashing, proxy, WAF, SSL, CORS, and CSRF tokens.
 
 🧪 **Automated Tests** 
->E2E tests (Playwright), Unit tests (PHPUnit), and CI/CD (GitHub Actions).
+>***E2E*** tests (Playwright), ***Unit*** tests (PHPUnit), and ***CI/CD*** (GitHub Actions).
 
 🔑 **User Accounts** 
 >Registration, login, account settings, sessions, and email verification/notifications.
@@ -97,11 +100,11 @@ Click to expand
 🔗 **Sharing** 
 >Generate secure links to share files, providing effortless access/collaboration for recipients. Includes permission management. A Cloudflare worker verifies URLs via server-generated HMAC and IP.
 
-♿ **Accessibility** 
->ARIA, keyboard navigation, shortcuts, clear labels, and semantic HTML.
-
 🎨 **UX/UI** 
 >A creative mix of bulletin board system/CLI themes with modern, responsive elements. Errors are more detailed/user-friendly than DropBox and UI is noticeably faster for a seamless experience.
+
+♿ **Accessibility** 
+>ARIA, keyboard navigation, shortcuts, clear labels, and semantic HTML.
 
 ✅ **Code Quality** 
 >Improved type safety and documentation through use of TypeScript, PHPDoc/type hinting, and PHPStan - leading to a high reduction in runtime errors and time spent debugging them. 
