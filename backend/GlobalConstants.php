@@ -3,10 +3,12 @@
 namespace App;
 
 class GlobalConstants {
+    /** @var array<string, mixed>|null */
     private static $constants = null;
 
     // Static block to load constants when the class is first accessed
-    public static function initialize() {
+    public static function initialize(): void
+    {
         if (self::$constants === null) {
             $jsonPath = __DIR__ . '/../shared_constants.json'; // in backend root
 
@@ -27,7 +29,8 @@ class GlobalConstants {
         }
     }
 
-    public static function get($name) {
+    public static function get(string $name): mixed
+    {
         self::initialize();
         return self::$constants[$name] ?? null;
     }
