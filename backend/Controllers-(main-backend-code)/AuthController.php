@@ -175,7 +175,7 @@ class AuthController extends Controller
         return implode('-', $chunks);
     }
 
-    private function createAccount(?string $email, $username, $password, ?string $verifyEmailKey): User
+    private function createAccount(?string $email, string $username, string $password, ?string $verifyEmailKey): User
     {
         $user = User::query()->create([
             'email' => $email ?? null,

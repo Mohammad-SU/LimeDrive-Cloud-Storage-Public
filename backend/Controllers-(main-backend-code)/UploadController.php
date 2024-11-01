@@ -32,6 +32,7 @@ class UploadController extends Controller
         try {
             $this->validateFileMetadataRequest($request);
 
+            /** @var int $userId (PHPStan) */
             $userId = auth()->id();
             
             $user = Helpers::getUserOrFail($userId); // Don't use auth()->user() as DB needs to be accessed
@@ -98,12 +99,12 @@ class UploadController extends Controller
 
     private function checkBucketStorageLimit(int $fileSize, BucketStorage $bucketStorage): void
     {
-        $doesSizeReachBucketLimit = $fileSize + $bucketStorage->used >= $bucketStorage->cap;
-
-        if ($doesSizeReachBucketLimit) { // Intentionally without buffer here to only delete as necessary
+        if ($fileSize + $bucketStorage->used >= $bucketStorage->cap) { // Intentionally without buffer here to only delete as necessary
             Helpers::deleteAccountsForSpace($bucketStorage); // Is called conditionally here as last resort if the limit is reached before the DeleteAccountsForSpace command has run again - since a buffer is used in the helper to allow the usage to fill past the buffer before the helper needs to be called from this controller (due to efficiency/speed reasons - prevent account pruning on every upload once bucket limit is close, so instead the call from the command runs it in the background for batching using the buffer)
 
-            if ($doesSizeReachBucketLimit) { // If the helper still didn't manage to free enough space for some reason (e.g. user accounts may have failed to delete).
+            $bucketStorage->refresh(); // For accurate recalculation. Use refresh instead of fresh
+
+            if ($fileSize + $bucketStorage->used >= $bucketStorage->cap) { // If the helper still didn't manage to free enough space for some reason (e.g. user accounts may have failed to delete).
                 throw New Exception("CRITICAL: File size would still reach bucket limit despite helper call.");
             } // Don't notify admin here since it's handled in the helper
 
@@ -349,6 +350,7 @@ class UploadController extends Controller
     {
         $this->validateFolderRequest($request);
 
+        /** @var int $userId (PHPStan) */
         $userId = auth()->id();
 
         try {

@@ -58,7 +58,7 @@ class ItemDownloadController extends Controller
         }
     }
 
-    public function getItemDownload(Request $request): JsonResponse|StreamedResponse
+    public function getItemDownload(Request $request): JsonResponse
     {
         try {     
             Helpers::checkClassBOps();
@@ -82,7 +82,7 @@ class ItemDownloadController extends Controller
             // Validate topLvlItems separately first for efficiency
             $topLvlItems = $this->getValidatedTopLevelItems($topLvlFileIds, $topLvlFolderIds);
 
-            $commonParentFolderId = $this->checkSameParentAndGetId($topLvlItems);
+            $commonParentFolderId = $this->confirmIsSameParentAndGetId($topLvlItems);
 
             $zipName = $this->getZipName($topLvlItems, $commonParentFolderId);
 
@@ -98,6 +98,11 @@ class ItemDownloadController extends Controller
         }
     }
 
+    /** 
+     * @param int[] $topLvlFileIds
+     * @param int[] $topLvlFolderIds
+     * @return mixed[]
+     */
     private function getValidatedTopLevelItems(array $topLvlFileIds, array $topLvlFolderIds): array
     {
         $topLvlFiles = [];
@@ -115,7 +120,13 @@ class ItemDownloadController extends Controller
         return array_merge($topLvlFiles, $topLvlFolders);
     }
 
-    private function checkSameParentAndGetId(array $topLvlItems): ?int
+    /**
+     * Make sure parent of all selected items are the same
+     * 
+     * @param array<int, array<string, mixed>> $topLvlItems
+     * @return ?int
+     */
+    private function confirmIsSameParentAndGetId(array $topLvlItems): ?int
     {        
         $topLvlParentFolderIds = array_column($topLvlItems, 'parent_folder_id');
         
@@ -126,6 +137,13 @@ class ItemDownloadController extends Controller
         return $topLvlParentFolderIds[0]; // If all items have same parentFolderId then [0] (and any other element) will have the common parent folder id
     }
 
+    /**
+     * Get the name for the zip file based on the relationship of the selected items with the parent folder or root.
+     *
+     * @param array<int, array<string, mixed>> $topLvlItems
+     * @param ?int $commonParentFolderId
+     * @return string
+     */
     private function getZipName(array $topLvlItems, ?int $commonParentFolderId): string
     {        
         // If single folder, then zipName should also be that folder's name with .zip (single files are already checked before, so [0] will have the correct single folder name)
@@ -145,6 +163,14 @@ class ItemDownloadController extends Controller
         return $zipName;
     }
 
+    /**
+     * Use recursive CTE to get items from DB for zipping
+     *
+     * @param int[] $topLvlFileIds
+     * @param int[] $topLvlFolderIds
+     * @param string $userIp
+     * @return array{filesToZip: array<int, array{zipPath: string, url: string}>, foldersToZip: array<int, array{zipPath: string}>}
+     */
     private function getItemsToZip(array $topLvlFileIds, array $topLvlFolderIds, string $userIp): array
     {
         $itemsForZipQuery = DB::select("
@@ -206,12 +232,13 @@ class ItemDownloadController extends Controller
 
         $items = json_decode($itemsForZipQuery[0]->items, true);
 
-        /** @var \Illuminate\Database\Eloquent\Collection<key, \App\Models\File> $files */
+        /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\File> $files */
         $files = File::query()->hydrate($items['files'] ?? []);
         $filesToZip = [];
 
         foreach ($files as $file) {
             $filesToZip[] = [
+                /** @phpstan-ignore-next-line (temp prop) */
                 'zipPath' => $file->zip_path,
                 'url' => $file->getPresignedUrl($userIp, now()->addMinutes(15), false) // Longer expiry in case it takes long for frontend to download
             ];
