@@ -117,7 +117,7 @@ class DeleteOrphanedOrUnconfirmedFiles extends Command
      * OR (is_uploaded = true and is_sample = false).
      * @return Collection<int, File>
      */
-    private function getRelevantDbFileRecords(int $lastProcessedId)
+    private function getRelevantDbFileRecords(int $lastProcessedId): Collection
     {
         $fileAgeThreshold = $this->getFileAgeThreshold()->toDateTimeString();
 
@@ -139,7 +139,7 @@ class DeleteOrphanedOrUnconfirmedFiles extends Command
     /**
      * @return array<string|array{dirname: string, basename: string, extension: string, filename: string}, array{key: string, lastModified: mixed}>
      */
-    private function listBucketObjectsToCompare(int $minId, int $maxId)
+    private function listBucketObjectsToCompare(int $minId, int $maxId): array
     {
         $objects = [];
         $continuationToken = null;
@@ -179,9 +179,9 @@ class DeleteOrphanedOrUnconfirmedFiles extends Command
     }
 
     /**
-     * @param $bucketObjects array<string|array{dirname: string, basename: string, extension: string, filename: string}, array{key: string, lastModified: mixed}>
+     * @param array<string, array{key: string, lastModified: mixed}> $bucketObjects
      */
-    private function deleteOrphanedAndUncomfirmedFiles(Collection $files, $bucketObjects)
+    private function deleteOrphanedAndUncomfirmedFiles(Collection $files, array $bucketObjects): void
     {
         $idsToDeleteFromDb = [];
         $fileAgeThreshold = $this->getFileAgeThreshold();
@@ -194,7 +194,7 @@ class DeleteOrphanedOrUnconfirmedFiles extends Command
             // If the file is not marked as uploaded then it would not appear in the user's UI so 
             // for them this would not cause a file to unexpectedly dissappear on their list.
             // Refer to comment at start of command.
-            if (!$correspondingObject || ($correspondingObject && !$file->is_uploaded)) {
+            if (($correspondingObject && !$file->is_uploaded) || !$correspondingObject) {
                 $idsToDeleteFromDb[] = $file->id;
                 // Don't update usages here - refer to final paragraph at start of command 
             } 
@@ -227,6 +227,9 @@ class DeleteOrphanedOrUnconfirmedFiles extends Command
         $this->deleteBucketObjects($keysToDeleteFromBucket);
     }
 
+    /**
+     * @param array<int> $idsToDeleteFromDb
+     */
     private function deleteFileRecords(array $idsToDeleteFromDb): void
     {
         if (!empty($idsToDeleteFromDb)) {
@@ -235,6 +238,9 @@ class DeleteOrphanedOrUnconfirmedFiles extends Command
         }
     }
 
+    /**
+     * @param array<string> $keysToDelete
+     */
     private function deleteBucketObjects(array $keysToDelete): void
     {
         // Don't update bucket usage in database - the bucket deletion helper function deals with updating usage as needed.
@@ -250,7 +256,7 @@ class DeleteOrphanedOrUnconfirmedFiles extends Command
         }
     }
 
-    private function deleteOrphanedBucketObjectsOutsideRange(?int $startId, ?int $endId = null)
+    private function deleteOrphanedBucketObjectsOutsideRange(?int $startId, ?int $endId = null): void
     {
         $continuationToken = null;
 
@@ -285,7 +291,11 @@ class DeleteOrphanedOrUnconfirmedFiles extends Command
         } while ($continuationToken);
     }
 
-    private function getResultFromListObjects(?int $startId, $continuationToken) {
+    /**
+     * @return \Aws\Result<array<string, mixed>>
+     */
+    private function getResultFromListObjects(?int $startId, ?string $continuationToken): \Aws\Result
+    {
         $params = [ 
             'Bucket' => config('filesystems.disks.s3.bucket'),
             'MaxKeys' => 1000,
