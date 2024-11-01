@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class SampleItemsSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         DB::table('sample_folders')->truncate();
         DB::table('sample_files')->truncate();
 
         // Sample folders main data
+        /** @var array<int, array{name: string, app_path: string, id?: int}> */
         $folders = [
             ['name' => 'Samples', 'app_path' => 'LimeDrive/Samples'],
             ['name' => 'Documents', 'app_path' => 'LimeDrive/Samples/Documents'],
@@ -33,7 +34,9 @@ class SampleItemsSeeder extends Seeder
             if ($folder['app_path'] !== 'LimeDrive/Samples') {
                 $parentPath = dirname($folder['app_path']);
                 $parentFolder = DB::table('sample_folders')->where('app_path', $parentPath)->first();
-                if ($parentFolder) {
+
+                if ($parentFolder && isset($folder['id'])) {
+                    /** @var object{id: int} $parentFolder */
                     DB::table('sample_folders')->where('id', $folder['id'])->update(['sample_parent_folder_id' => $parentFolder->id]);
                 }
             }
@@ -62,7 +65,9 @@ class SampleItemsSeeder extends Seeder
             if ($file['app_path'] !== 'LimeDrive/Welcome Readme.html') { // Don't return early since this still needs to be inserted
                 $parentPath = dirname($file['app_path']);
                 $parentFolder = DB::table('sample_folders')->where('app_path', $parentPath)->first();
+                
                 if ($parentFolder) {
+                    /** @var object{id: int} $parentFolder */
                     $file['sample_parent_folder_id'] = $parentFolder->id;
                 }
             }
