@@ -80,7 +80,7 @@ class User extends Authenticatable
         return $this->hasMany(Folder::class, 'user_id');
     }
 
-    public function files($excludeUploaded = false): HasMany
+    public function files(bool $excludeUploaded = false): HasMany
     {
         // The $query isn't ran straight away if you access this as $user->files(), 
         // but is ran if you access it as $user->files or $user->files()->get (so it's still efficient for excludeUploaded)
@@ -203,13 +203,12 @@ class User extends Authenticatable
         ] + ($generatedPassword ? ['generatedPassword' => $generatedPassword] : []));
     }
 
-    /** Delete user account and associated data.
-     * @return bool
-     */
-    public function deleteAccount()
+    /** Delete user account and associated data. */
+    public function deleteAccount(): bool
     {
         // Don't prevent deleting account even if user has unuploaded files, in order to prevent issues
 
+        // Don't use toArray() here
         $files = $this->files()->get()->all(); // Declare here so they are accessible after deletion
         // $email = $this->email; // Commented out for now to not use up email
         // $is_email_verified = $this->is_email_verified;

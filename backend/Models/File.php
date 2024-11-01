@@ -109,7 +109,7 @@ class File extends Model
      * @param bool $isInline
      * @return string
     */
-    public function getPresignedUrl($userIp, $expiration, $isInline = true)
+    public function getPresignedUrl(string $userIp, \Illuminate\Support\Carbon $expiration, bool $isInline = true): string
     {
         // Inline is for viewing file in the viewer. Attachment is for file download
         // Setting content-type header is not necessary
@@ -134,10 +134,16 @@ class File extends Model
         // Leave leading slash
         $dataToAuthenticate = '/'.$cloudPath.$userId.$userIp.$generationTime.$expiry;
 
+        $symKey = mb_convert_encoding(config('app.bucket_url_symmetric_key'), 'UTF-8', 'auto');
+
+        if (!is_string($symKey)) {
+            throw new \InvalidArgumentException('Symmetric key must be a string');
+        }
+
         $mac = hash_hmac(
             'sha256',
             mb_convert_encoding($dataToAuthenticate, 'UTF-8', 'auto'), 
-            mb_convert_encoding(config('app.bucket_url_symmetric_key'), 'UTF-8', 'auto'),
+            $symKey,
             true
         );
         $base64Mac = base64_encode($mac); // base64 instead of hex so less chars are used (less data transfer, possibly more efficient). hash_hmac returns raw binary data so doesn't turn it into hex first
@@ -148,7 +154,7 @@ class File extends Model
             'content-disposition' => $contentDisposition
         ]);
 
-        // Don't need to put host in HMAC. Worker is not mapped to non-r2 hostnames anyway.
+        // Don't need to put host in HMAC. I already implemented WAF rules and this worker can't be accessed by users outside of its subdomain and this hostname
         $workerHost = Helpers::isEnvLocal() ? 
             'http://localhost:8787' // Local worker is http
             : 'https://r2.limedrive.net';
