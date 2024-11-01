@@ -6,8 +6,8 @@ use Exception;
 
 class StorageCapExceedableException extends Exception
 {
-    protected $limitType;
-    protected $limit;
+    protected string $limitType;
+    protected int $limit;
 
     public function __construct(string $limitType, int $limit)
     {
