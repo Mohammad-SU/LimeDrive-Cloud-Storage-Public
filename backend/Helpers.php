@@ -26,11 +26,8 @@ use Illuminate\Http\Request;
 
 class Helpers
 {
-    /** Valid formats are e.g. 62724 2938 1285099
-     * @param int|string $id
-     * @return bool
-     */
-    public static function isFileIdFormat($id)
+    /** Valid formats are e.g. 62724 2938 1285099 */
+    public static function isFileIdFormat(int|string $id): bool
     {
         return is_numeric($id);
     }
@@ -39,19 +36,17 @@ class Helpers
      * Folder ids are int on the database. 
      * On the frontend they are string for differentiating from files on the backend controllers.
      * Root is handled with convertToParentFolderDbId helper, not with isFrontendFolderIdFormat helper.
-     * @param int|string $id
-     * @return bool
      */
-    public static function isFrontendFolderIdFormat($id)
+    public static function isFrontendFolderIdFormat(int|string $id): bool
     {
         return preg_match('/^d_\d+$/', strval($id)) === 1;
     }
 
     /**
-     * @param string $parentFolderId
+     * @param ?string $parentFolderId
      * @return int|null null is returned if null is passed in, which should be considered root folder id
      */
-    public static function convertToParentFolderDbId($parentFolderId)
+    public static function convertToParentFolderDbId(?string $parentFolderId): int|null
     {
         $parentFolderDbId = $parentFolderId === null ? 
             null
@@ -64,7 +59,7 @@ class Helpers
      * @param int|null $dbParentFolderId
      * @return string|null null is returned if null is passed in, which should be considered root folder id
     */
-    public static function convertToFrontendParentFolderId($dbParentFolderId)
+    public static function convertToFrontendParentFolderId(int|null $dbParentFolderId): string|null
     {
         $frontendParentFolderId = $dbParentFolderId === null ? 
             null
@@ -73,18 +68,18 @@ class Helpers
         return $frontendParentFolderId;
     }
 
-    /**
-     * @param string $folderId
-     * @return int
-     */
-    public static function convertToFolderDbId($folderId)
+    public static function convertToFolderDbId(string $folderId): int
     {
         $folderDbId = intval(Str::after($folderId, "d_"));
 
         return $folderDbId;
     }
 
-    public static function convertFrontendItemIdsToDbIds(array $itemIds)
+/**
+     * @param mixed[] $itemIds
+     * @return mixed[]
+     */
+    public static function convertFrontendItemIdsToDbIds(array $itemIds): array
     {
         $fileIds = [];
         $folderIds = [];
@@ -109,7 +104,7 @@ class Helpers
      * @param array<mixed> $array
      * @return array<mixed>
      */
-    public static function arrToSnake($array)
+    public static function arrToSnake(array $array): array
     {
         $result = [];
         foreach ($array as $key => $value) {
@@ -122,7 +117,7 @@ class Helpers
      * @param array<mixed> $array
      * @return array<mixed>
      */
-    public static function arrToCamel($array)
+    public static function arrToCamel(array $array): array
     {
         $result = [];
         foreach ($array as $key => $value) {
