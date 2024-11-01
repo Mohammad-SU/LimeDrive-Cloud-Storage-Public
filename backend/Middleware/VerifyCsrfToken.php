@@ -19,7 +19,7 @@ class VerifyCsrfToken extends Middleware
 
     // For some reason axios doesn't always send the X-XSRF-TOKEN as a *header* but sends it as a cookie
     // so this function is to check for that
-    protected function getTokenFromRequest($request)
+    protected function getTokenFromRequest($request): string|null
     {
         // Keep default behavior, use parent method first
         $token = parent::getTokenFromRequest($request);
@@ -27,6 +27,9 @@ class VerifyCsrfToken extends Middleware
         // If token not found then look for token in cookie
         if (!$token){
             $token = $request->cookie('XSRF-TOKEN');
+            if (is_array($token)) {
+                return null;
+            }
         }
         return $token;
     }

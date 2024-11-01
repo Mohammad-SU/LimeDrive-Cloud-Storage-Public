@@ -23,7 +23,7 @@ class CustomAuthenticateSession extends AuthenticateSession
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next): mixed
     {
         if (! $request->hasSession() || ! $request->user() || ! $request->user()->getAuthPassword()) {
             return $next($request);
@@ -50,7 +50,7 @@ class CustomAuthenticateSession extends AuthenticateSession
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    protected function storePasswordHashInSession($request)
+    protected function storePasswordHashInSession($request): void
     {
         if (! $request->user()) {
             return;
@@ -69,7 +69,7 @@ class CustomAuthenticateSession extends AuthenticateSession
      *
      * @throws \Illuminate\Auth\AuthenticationException
      */
-    protected function logout($request)
+    protected function logout($request): void
     {
         auth()->guard('web')->logout();
         
@@ -87,7 +87,7 @@ class CustomAuthenticateSession extends AuthenticateSession
      *
      * @return bool
      */
-    protected function viaRemember()
+    protected function viaRemember(): bool
     {
         return false;
     }
