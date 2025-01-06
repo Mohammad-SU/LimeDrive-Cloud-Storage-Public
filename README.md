@@ -82,7 +82,7 @@ Click to expand
 >Integrates zero-egress-fee object storage, recursive CTEs, no-cost cloud service tiers, CDN, caching, lazy loading, data deduplication, automated cleanup, throttling, and usage limits - these lead to ***zero costs*** in data storage/processing, ***+63.3% faster*** API in production, being ***+2.7x faster*** than DropBox in service speed, and improved scalability and UX.
 
 🚀 **Optimised Downloads** 
->A web worker, multiple data streaming packages, piped async iterables, and presigned URLs allow ***GBs of downloads*** to ***initiate immediately*** with ***only bytes of server load***.
+>A web worker, multiple data streaming packages, piped async iterables, and presigned URLs allow ***GBs of downloads*** to ***initiate immediately*** with ***minimal server load***.
 
 🔒 **Security** 
 >Client/server validation, encryption, hashing, proxy, WAF, SSL, CORS, and CSRF tokens.
