@@ -23,7 +23,7 @@
 
 ## ☁️ What's LimeDrive?
 
-A robust cloud storage service that I solo-developed, with some areas surpassing Dropbox/Google Drive (particularly speed). I handled all complex architectural and scalability decisions, implementing them myself. Seamlessly manage and view files in LimeDrive's sleek retro UI - secure, fast, and performant.
+A robust cloud storage service that I developed, with some areas surpassing Dropbox/Google Drive (particularly speed). I handled all complex architectural and scalability decisions, implementing them myself. Seamlessly manage and view files in LimeDrive's sleek retro UI - secure, fast, and performant.
 
 > [!NOTE]
 The LimeDrive codebase is partly open-source, meaning only a fraction of its code is available in this public repo. Much of this is obfuscated, such as the directory structure/names - this is because the code here is primarily meant for showcase (even for those with no experience with the technologies used) and it may become a commercial service in the future. It may not function properly if you attempt to run it in your local environment with no other dependencies or changes.
