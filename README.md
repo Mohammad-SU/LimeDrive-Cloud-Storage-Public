@@ -79,7 +79,7 @@ Click to expand
 ## 🔍 Current Features
 
 ⚡ **Cost and Performance Optimisation**
->Integrates zero-egress-fee object storage, recursive CTEs, no-cost cloud service tiers, CDN, caching, lazy loading, data deduplication, automated cleanup, throttling, and usage limits - these lead to ***zero costs*** in data storage/processing, ***+63.3% faster*** API in production, being ***+2.7x faster*** than DropBox in service speed, and improved scalability and UX.
+>Integrates zero-egress-fee object storage, recursive CTEs, no-cost cloud service tiers, CDN, caching, lazy loading, data deduplication, automated cleanup, throttling, and usage limits - these lead to ***zero costs*** in data storage/processing and improvements in both scalability and UX. Achieved ***2.1x faster loading speed*** than Dropbox and ***sub-10ms*** UI interactions (vs. 1270ms for Google Drive) by leveraging client-side rendering, routing, and memoisation.
 
 🚀 **Optimised Downloads** 
 >A web worker, multiple data streaming packages, piped async iterables, and presigned URLs allow ***GBs of downloads*** to ***initiate immediately*** with ***minimal server load***.
