@@ -1,6 +1,6 @@
 # System Architecture
 
-![System Architecture Diagram](docs/images/system_architecture.png)
+![System Architecture Diagram](./images/system_architecture.png)
 
 ## Overview
 
