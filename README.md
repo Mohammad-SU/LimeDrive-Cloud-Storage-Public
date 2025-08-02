@@ -32,6 +32,10 @@ The LimeDrive codebase is partly open-source, meaning only a fraction of its cod
 >
 > A mostly ***public*** feature you may want to look at is the multi-file download feature. In the backend, see the ItemDownloadController and the File Model's presigned url generator, and the frontend web worker and custom useDownload hook which goes with it, and the cloudflare worker. This feature is one of the most advanced. It uses a recursive CTE, a custom implementation of presigned URLs with HMAC, and client-side async streaming and zipping. This results in secure, scalable multi-file downloads - able to handle ***gigabytes*** of concurrent downloads with minimal server load.
 
+## 📚 Documentation
+
+- [System Architecture](https://github.com/Mohammad-SU/LimeDrive-Cloud-Storage-Public/blob/main/docs/system_architecture.md)
+
 ## 📸 Screenshots With Captions
 
 <details>
